@@ -3,20 +3,10 @@
   "description": "udemy question one answer",
   "version": "1.0",
   "manifest_version": 3,
-  "background": {
-    "service_worker": "background.js"
-  },
-  "permissions": ["storage", "activeTab", "scripting", "unlimitedStorage"],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "32": "/images/icon.png"
-    }
-  },
+  "permissions": [],
   "icons": {
     "32": "/images/icon.png"
   },
-  "options_page": "options.html",
   "content_scripts": [{
     "matches": ["https://www.udemy.com/course/*/learn/quiz/*/result/*"],
     "js": ["script.js"],
