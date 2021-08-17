@@ -8,9 +8,7 @@
     "32": "/images/icon.png"
   },
   "content_scripts": [{
-    "matches": ["https://www.udemy.com/course/*/learn/quiz/*/result/*"],
-    "js": ["script.js"],
-    "run_at": "document_end",
-    "all_frames": true
+    "matches": ["https://www.udemy.com/course/*/learn/quiz/*"],
+    "js": ["script.js"]
   }]
 }

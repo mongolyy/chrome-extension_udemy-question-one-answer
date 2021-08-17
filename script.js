@@ -1,6 +1,5 @@
 function show() {
-  document.querySelectorAll("[class^='mc-quiz-answer--correctness--']").forEach(element => element.style.display = 'block');
-  document.querySelectorAll("[class*='mc-quiz-answer--answer-body--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = '#f2f7f6');
+  document.querySelectorAll("[class*='mc-quiz-answer--answer-body--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = '#d4eae0');
   document.querySelectorAll("[class^='mc-quiz-question--explanation--']").forEach(element => element.style.visibility = 'visible');
 }
 
@@ -15,16 +14,24 @@ const main = () => {
 
   const jsLoaded = () => {
     if (document.querySelector("[class^='detailed-result-panel--panel-row--']") !== null) {
-      clearInterval(jsInitCheckTimer)
-      hide()
+      clearInterval(jsInitCheckTimer);
+      hide();
 
       document.querySelectorAll("[class^='detailed-result-panel--panel-row--']").forEach(element => {
         const showButton = document.createElement('button');
         showButton.innerText = 'show answer';
+        showButton.type = 'button';
+        showButton.style.width = '150px';
+        showButton.style.borderRadius = '5px';
+        showButton.style.borderWidth = '1px';
         showButton.onclick = show;
 
         const hiddenButton = document.createElement('button');
         hiddenButton.innerText = 'hide answer';
+        hiddenButton.type = 'button';
+        hiddenButton.style.width = '150px';
+        hiddenButton.style.borderRadius = '5px';
+        hiddenButton.style.borderWidth = '1px';
         hiddenButton.onclick = hide;
 
         const formNode = element.querySelector('form');
