@@ -1,11 +1,12 @@
 function show() {
-  document.querySelectorAll("[class*='mc-quiz-answer--answer-body--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = '#d4eae0');
+  document.querySelectorAll("[class*='mc-quiz-answer--correctness--']").forEach(element => element.style.display = '');
+  document.querySelectorAll("[class*='mc-quiz-answer--answer--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = '#d4eae0');
   document.querySelectorAll("[class^='mc-quiz-question--explanation--']").forEach(element => element.style.visibility = 'visible');
 }
 
 function hide() {
-  document.querySelectorAll("[class^='mc-quiz-answer--correctness--']").forEach(element => element.style.display = 'none');
-  document.querySelectorAll("[class*='mc-quiz-answer--answer-body--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = 'transparent');
+  document.querySelectorAll("[class*='mc-quiz-answer--correctness--']").forEach(element => element.style.display = 'none');
+  document.querySelectorAll("[class*='mc-quiz-answer--answer--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = 'transparent');
   document.querySelectorAll("[class^='mc-quiz-question--explanation--']").forEach(element => element.style.visibility = 'hidden');
 }
 
@@ -18,6 +19,11 @@ const main = () => {
       hide();
 
       document.querySelectorAll("[class^='detailed-result-panel--panel-row--']").forEach(element => {
+        const formNode = element.querySelector("[class^='mc-quiz-question--container--']");
+        if (!formNode) {
+          return
+        }
+
         const showButton = document.createElement('button');
         showButton.innerText = 'show answer';
         showButton.type = 'button';
@@ -34,7 +40,6 @@ const main = () => {
         hiddenButton.style.borderWidth = '1px';
         hiddenButton.onclick = hide;
 
-        const formNode = element.querySelector('form');
         formNode.insertBefore(showButton, formNode.querySelector("[class^='mc-quiz-question--explanation--']"));
         formNode.appendChild(hiddenButton);
       });
