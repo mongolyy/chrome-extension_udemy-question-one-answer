@@ -1,8 +1,9 @@
 {
-  "name": "Udemy Question-And-Answer (Udemy一問一答)",
+  "name": "__MSG_extName__",
   "description": "You can check questions and answers in a question-and-answer format at Udemy's practice exam courses",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 3,
+  "default_locale": "ja",
   "permissions": [],
   "icons": {
     "32": "/images/icon.png"
