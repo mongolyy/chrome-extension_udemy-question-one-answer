@@ -1,25 +1,43 @@
 function show() {
-  document.querySelectorAll("[class*='mc-quiz-answer--correctness--']").forEach(element => element.style.display = '');
-  document.querySelectorAll("[class*='mc-quiz-answer--answer--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = '#d4eae0');
-  document.querySelectorAll("[class^='mc-quiz-question--explanation--']").forEach(element => element.style.visibility = 'visible');
+  document.querySelectorAll("[class*='result-pane--answer-by-user-label--']").forEach(element => element.style.display = '');
+  document.querySelectorAll("[class*='answer-result-pane--answer-incorrect--']").forEach(element => {
+    element.style.backgroundColor = '#fbece9'
+    element.style.border = '1px solid #b32d0f'
+    element.style.color = '#2d2f31'
+  });
+  document.querySelectorAll("[class*='answer-result-pane--answer-correct--']").forEach(element => {
+    element.style.backgroundColor = '#f2f7f6'
+    element.style.border = '1px solid #1e6055'
+    element.style.color = '#2d2f31'
+  });
+  document.querySelectorAll("[class^='result-pane--question-related-fields--']").forEach(element => element.style.visibility = 'visible');
 }
 
 function hide() {
-  document.querySelectorAll("[class*='mc-quiz-answer--correctness--']").forEach(element => element.style.display = 'none');
-  document.querySelectorAll("[class*='mc-quiz-answer--answer--'][class*='mc-quiz-answer--correct--']").forEach(element => element.style.backgroundColor = 'transparent');
-  document.querySelectorAll("[class^='mc-quiz-question--explanation--']").forEach(element => element.style.visibility = 'hidden');
+  document.querySelectorAll("[class*='result-pane--answer-by-user-label--']").forEach(element => element.style.display = 'none');
+  document.querySelectorAll("[class*='answer-result-pane--answer-incorrect--']").forEach(element => {
+    element.style.backgroundColor = '#fff'
+    element.style.border = '1px solid #d1d7dc'
+    element.style.color = '#6a6f73'
+  });
+  document.querySelectorAll("[class*='answer-result-pane--answer-correct--']").forEach(element => {
+    element.style.backgroundColor = '#fff'
+    element.style.border = '1px solid #d1d7dc'
+    element.style.color = '#6a6f73'
+  });
+  document.querySelectorAll("[class^='result-pane--question-related-fields--']").forEach(element => element.style.visibility = 'hidden');
 }
 
 const main = () => {
   let jsInitCheckTimer;
 
   const jsLoaded = () => {
-    if (document.querySelector("[class^='detailed-result-panel--panel-row--']") !== null) {
+    if (document.querySelector("[class^='result-pane--question-result-pane-wrapper--']") !== null) {
       clearInterval(jsInitCheckTimer);
       hide();
 
-      document.querySelectorAll("[class^='detailed-result-panel--panel-row--']").forEach(element => {
-        const formNode = element.querySelector("[class^='mc-quiz-question--container--']");
+      document.querySelectorAll("[class^='result-pane--question-result-pane-wrapper--']").forEach(element => {
+        const formNode = element.querySelector("[class^='result-pane--question-result-pane-expanded-content--']");
         if (!formNode) {
           return
         }
@@ -40,7 +58,7 @@ const main = () => {
         hiddenButton.style.borderWidth = '1px';
         hiddenButton.onclick = hide;
 
-        formNode.insertBefore(showButton, formNode.querySelector("[class^='mc-quiz-question--explanation--']"));
+        formNode.insertBefore(showButton, formNode.querySelector("[class^='result-pane--question-related-fields--']"));
         formNode.appendChild(hiddenButton);
       });
     }
